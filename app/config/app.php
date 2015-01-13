@@ -197,4 +197,7 @@ return array(
 
 	),
 
+	'baseurl' => '185.10.51.243',
+	'apibaseurl' => 'unknown'
+
 );

@@ -1,5 +1,7 @@
 <?php
 
+use Config;
+
 class HomeController extends BaseController {
 
 	/*
@@ -15,17 +17,14 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function getIndex()
 	{	
 		JavaScript::put(
-                [   
-                    'translations' => [
-                        'derp' => 'hoi'
-                    ]
-                ]);
+        [   
+            'baseurl' => Config::get('app.baseurl')
+        ]);
 
-
-		$view = View::make('hello');
+		$view = View::make('IndexView');
 		$view->message = 'why you no work';
 		$view->please = "work";
 		return $view;
