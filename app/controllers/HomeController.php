@@ -25,8 +25,12 @@ class HomeController extends BaseController {
         ]);
 
 		$view = View::make('IndexView');
-		$view->message = 'why you no work';
-		$view->please = "work";
+		return $view;
+	}
+
+	public function getLoginView()
+	{
+		$view = View::make('include/LoginView');
 		return $view;
 	}
 

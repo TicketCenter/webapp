@@ -13,7 +13,8 @@
         "fortawesome/font-awesome": "4.*",
         "components/jquery": "1.11.*",
         "guzzlehttp/guzzle": "~4.0",
-       	"laracasts/utilities": "1.0.*"
+       	"laracasts/utilities": "1.0.*",
+       	"components/jquery-cookie": "1.4.1.2"
 	},
 	"autoload": {
 		"classmap": [
