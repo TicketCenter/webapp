@@ -6,7 +6,7 @@ function bindFormButton() {
     $('.login-form').submit(function(e) {
         $.ajax({
             type: 'POST',
-            url: baseurl + '/handleLogin',
+            url: '/handleLogin',
             data: {
                 email: $('.email-input').val(),
                 password: $('.password-input').val()

@@ -15,6 +15,8 @@ class LoginController extends BaseController {
 			$password = Input::get('password');
 			Session::put('u', Crypt::encrypt($username));
 			Session::put('p', Crypt::encrypt($password));
+			Session::put('logged_in', true);
+
 			return Response::json(array('status' => '200', 'devmessage' => 'logged in.'));
 	}
 	
@@ -25,7 +27,7 @@ class LoginController extends BaseController {
 	
 	public function logout(){
 		Session::flush();
-		return Response::json(array('status' => '200', 'devmessage' => 'logged out.'));
+		return Redirect::to('/');
 	}
 	/**
 	* Debug

@@ -1,7 +1,5 @@
 <?php
 
-use Config;
-
 class HomeController extends BaseController {
 
 	/*
@@ -19,11 +17,6 @@ class HomeController extends BaseController {
 
 	public function getIndex()
 	{	
-		JavaScript::put(
-        [   
-            'baseurl' => Config::get('app.baseurl')
-        ]);
-
 		$view = View::make('IndexView');
 		return $view;
 	}
