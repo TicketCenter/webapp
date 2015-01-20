@@ -20,11 +20,4 @@ class HomeController extends BaseController {
 		$view = View::make('IndexView');
 		return $view;
 	}
-
-	public function getLoginView()
-	{
-		$view = View::make('include/LoginView');
-		return $view;
-	}
-
 }

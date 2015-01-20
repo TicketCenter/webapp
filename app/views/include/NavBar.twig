@@ -21,13 +21,13 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-user fa-fw"></i>Gebruiker <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         {% if logged_in %}
-                        <li><a href="#"><i class="fa fa-bars fa-fw"></i>Bestellingen</a></li>
+                        <li><a href="#"><i class="fa fa-bars fa-fw"></i>Geschiedenis</a></li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="fa fa-cog fa-fw"></i>Instellingen</a></li>
                         <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out fa-fw"></i>Uitloggen</a></li>
                         {% else %}
                         <li><a href="{{ route('login') }}"><i class="fa fa-sign-in fa-fw"></i>Inloggen</a></li>
-                        <li><a href="#"><i class="fa fa-file-o fa-fw"></i>Registreren</a></li>
+                        <li><a href="{{ route('register') }}"><i class="fa fa-file-o fa-fw"></i>Registreren</a></li>
                         {% endif %}
                     </ul>
                 </li>

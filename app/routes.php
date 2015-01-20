@@ -14,10 +14,13 @@
 View::share('baseurl', Config::get('app.baseurl'));
 View::share('logged_in', Session::get('logged_in'));
 
-// Login
-Route::get('/login', array('as' => 'login', 'uses' => 'HomeController@getLoginView'));
-Route::get('/logout', array('as' => 'logout', 'uses' => 'LoginController@logout'));
-Route::post('/handleLogin', array('as' => 'handleLogin', 'uses' => 'LoginController@handleLogin'));
+// User
+Route::get('/login', array('as' => 'login', 'uses' => 'UserController@getLoginView'));
+Route::get('/logout', array('as' => 'logout', 'uses' => 'UserController@logout'));
+Route::post('/handleLogin', array('as' => 'handleLogin', 'uses' => 'UserController@handleLogin'));
+Route::get('/register', array('as' => 'register', 'uses' => 'UserController@getRegistrationView'));
+Route::post('/handleRegistration', array('as' => 'handleRegistration', 'uses' => 'UserController@handleRegistration'));
+Route::get('/register/complete', array('as' => 'registrationComplete', 'uses' => 'UserController@getRegistrationCompleteView'));
 
 // Concert
 Route::get('/concerts', array('as' => 'concerts', 'uses' => 'ConcertController@getConcerts'));
@@ -26,7 +29,7 @@ Route::get('/concerts', array('as' => 'concerts', 'uses' => 'ConcertController@g
 Route::get('/artists', array('as' => 'artists', 'uses' => 'ArtistController@getArtists'));
 
 // Test
-Route::get('/test', 'LoginController@devGetSession');
+// Route::get('/test', 'UserController@devGetSession');
 
 // Root
 Route::get('/', 'HomeController@getIndex');

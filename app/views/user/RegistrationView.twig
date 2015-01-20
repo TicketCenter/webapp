@@ -1,0 +1,72 @@
+{% extends "BaseView.twig" %}
+{% block head %}
+	<link rel="stylesheet" href="{{ asset('css/datepicker.css') }}" type="text/css" media="screen">
+{% endblock head %}
+{% block content %}
+<div class="registration-container">
+	<div class="error-message borderframe error hidden"></div>
+	<form class="registration-form borderframe">
+		<div class="form-group">
+			<label for="email1">Email adres</label>
+			<input type="email" class="form-control email1-input" name="email1" placeholder="Email" required>
+		</div>
+		<div class="form-group">
+			<label for="email2">Bevestiging email adres</label>
+			<input type="email" class="form-control email2-input" name="email2" placeholder="Bevestiging email" required>
+		</div>
+		<div class="form-group">
+			<label for="password1">Wachtwoord</label>
+			<input type="password" class="form-control password1-input" name="password1" placeholder="Wachtwoord" required>
+		</div>
+		<div class="form-group">
+			<label for="password2">Bevestiging wachtwoord</label>
+			<input type="password" class="form-control password2-input" name="password2" placeholder="Bevestiging wachtwoord" required>
+		</div>
+		<div class="form-group">
+			<label for="firstname">Voornaam</label>
+			<input type="text" class="form-control firstname-input" name="firstname" placeholder="Voornaam" required>
+		</div>
+		<div class="form-group">
+			<label for="lastname">Achternaam</label>
+			<input type="text" class="form-control lastname-input" name="lastname" placeholder="Achternaam" required>
+		</div>
+		<div class="form-group">
+			<label for="dateofbirth">Geboorte datum</label>
+			<input type="text" class="form-control dateofbirth-input" name="dateofbirth" placeholder="Geboorte datum" required>
+		</div>
+		<div class="form-group">
+			<label for="street">Straat</label>
+			<input type="text" class="form-control street-input" name="street" placeholder="Straat"required>
+		</div>
+		<div class="form-group">
+			<label for="housenumber">Huisnummer</label>
+			<input type="text" class="form-control housenumber-input" name="housenumber" placeholder="Huisnummer" required>
+		</div>
+		<div class="form-group">
+			<label for="appendix">Toevoeging</label>
+			<input type="text" class="form-control appendix-input" name="appendix" placeholder="Toevoeging">
+		</div>
+		<div class="form-group">
+			<label for="postalcode">Postcode</label>
+			<input type="text" class="form-control postalcode-input" name="postalcode" placeholder="Postcode" required>
+		</div>
+		<div class="form-group">
+			<label for="city">Plaats</label>
+			<input type="text" class="form-control city-input" name="city" placeholder="Plaats" required>
+		</div>
+		<div class="form-group">
+			<label for="country">Land</label>
+			<select class="form-control country-input">
+				{% for country in countries %}
+					<option value="{{ country }}">{{ country }}</option>
+				{% endfor %}
+			</select>
+		</div>
+		<button class="btn btn-default">Registreren</button>
+	</form>
+</div>
+{% endblock content %}
+{% block javascript %}
+<script type="text/javascript" src="{{ asset('js/registration.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+{% endblock javascript %}
