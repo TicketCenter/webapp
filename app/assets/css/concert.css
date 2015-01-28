@@ -1,0 +1,30 @@
+.borderframe > h1 {
+    display: inline-block;
+}
+.available-price{
+    margin-top: 20px;
+    float: right;
+}
+
+.available-price > table {
+    table-layout: fixed;
+    width: 100%;
+    text-align: right;
+}
+
+.available-price > table > tbody > tr > td:last-child{
+    width: 50px;
+}
+
+.details > p > a:after { 
+    content: ', '; 
+}
+
+.details > p > a:last-child:after { 
+    content: none; 
+}
+
+.order-tickets {
+    float: right;
+    margin-top: -50px;
+}

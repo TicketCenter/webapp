@@ -1,0 +1,17 @@
+{% extends "BaseView.twig" %}
+{% block head %}
+	<link rel="stylesheet" href="{{ asset('css/artist.min.css') }}" type="text/css" media="screen">
+{% endblock head %}
+{% block content %}
+<div class="col-md-12 borderframe">
+	<h1>{{artist.name}} {% if artist.birth_year %}- {{artist.birth_year}}{% endif %}</h1>
+	<img style="float: right" src="{{artist.image.url}}">
+	{% if artist.biography %}
+	<p>{{ artist.biography|raw }}</p>
+	{% else %}
+	<p>Nog geen biografie!</p>
+	{% endif %}
+</div>
+{% endblock content %}
+{% block javascript %}
+{% endblock javascript %}

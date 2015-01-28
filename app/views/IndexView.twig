@@ -1,12 +1,40 @@
 {% extends "BaseView.twig" %}
-
 {% block head %}
+<link rel="stylesheet" href="{{ asset('css/index.min.css') }}" type="text/css" media="screen">
+<link rel="stylesheet" href="{{ asset('packages/owl-carousel/owl.carousel.css') }}" type="text/css" media="screen">
+<link rel="stylesheet" href="{{ asset('packages/owl-carousel/owl.theme.css') }}" type="text/css" media="screen">
+<link rel="stylesheet" href="{{ asset('packages/owl-carousel/owl.transitions.css') }}" type="text/css" media="screen">
 {% endblock head %}
-
 {% block content %}
-	Landing page
+<div class="col-md-12 owl-carousel">
+	<img class="banner-img" src="{{ asset('img/banner.png') }}"/>
+	<img class="banner-img" src="{{ asset('img/banner.png') }}"/>
+	<img class="banner-img" src="{{ asset('img/banner.png') }}"/>
+	<img class="banner-img" src="{{ asset('img/banner.png') }}"/>
+	<img class="banner-img" src="{{ asset('img/banner.png') }}"/>
+</div>
+<div class="col-md-6 margin-top-20 borderframe interesting-concerts">
+	<h3>Interresante concerten</h1>
+	<div class="concerts">
+
+	</div>
+	<div class="loading-div">
+		<img class="loading-icon" src="{{ asset('img/ajax-loader.gif') }}">
+	</div>
+</div>
+<div class="col-md-6 margin-top-20 borderframe interesting-artists">
+	<h3>Interresante artiesten</h1>
+	<div class="artists">
+
+	</div>
+	<div class="loading-div">
+		<img class="loading-icon" src="{{ asset('img/ajax-loader.gif') }}">
+	</div>
+</div>
 {% endblock content %}
 
 {% block javascript %}
-{% endblock javascript %} 
-
+<script type="text/javascript" src="{{ asset('packages/lazyload/lazyload.js') }}"></script>
+<script src="{{ asset('packages/owl-carousel/owl.carousel.js') }}"></script>
+<script src="{{ asset('js/index.min.js') }}"></script>
+{% endblock javascript %}

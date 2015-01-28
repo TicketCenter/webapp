@@ -1,11 +1,30 @@
 {% extends "BaseView.twig" %}
-
 {% block head %}
+<link rel="stylesheet" href="{{ asset('css/concertOverview.min.css') }}" type="text/css" media="screen">
 {% endblock head %}
-
 {% block content %}
-	ConcertOverView
+<div class="col-md-12 borderframe search">
+	<div class="search-box">
+		<input type="text" class="form-control input-lg" placeholder="Zoeken op concert locatie" value="{{search}}">
+		<button class="btn btn-lg btn-primary">Zoek</button>
+	</div>
+</div>
+<div class="col-md-12 borderframe overview">
+	<div class="concerts">
+		{% if concerts != null %}
+		{% for concert in concerts %}
+		<div class="concert" data-id="{{ concert.id }}">{% if concert.image != null %}<img class="lazy" data-original="{{ concert.image.url }}" width="42" height="42">{% else %}<img class="lazy" data-original="" width="42" height="42">{% endif %}{{ concert.title }}, {{ concert.city }}, {{ concert.country }}<br>Datum: {{ concert.start_time.date }}</div>
+		{% endfor %}
+		{% else %}
+		Geen resultaten gevonden!
+		{% endif %}
+	</div>
+	{% if concerts != null %}
+	<div class="load-more"><button class="btn btn-lg btn-default">Meer laden</button></div>
+	{% endif %}
+</div>
 {% endblock content %}
-
 {% block javascript %}
+<script type="text/javascript" src="{{ asset('packages/lazyload/lazyload.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/concertOverview.min.js') }}"></script>
 {% endblock javascript %}

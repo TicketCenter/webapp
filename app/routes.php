@@ -24,12 +24,19 @@ Route::get('/register/complete', array('as' => 'registrationComplete', 'uses' =>
 
 // Concert
 Route::get('/concerts', array('as' => 'concerts', 'uses' => 'ConcertController@getConcerts'));
+Route::get('/concert/{id}', 'ConcertController@getConcert');
+Route::get('/concerts/search/{location}','ConcertController@searchConcerts');
+Route::get('/concerts/search/{location}/page/{page}', 'ConcertController@searchConcertsPage');
+Route::get('/concerts/page/{page}', 'ConcertController@getConcertsPage');
+Route::get('/concerts/interesting', 'ConcertController@getInterestingConcerts');
 
 // Artist
 Route::get('/artists', array('as' => 'artists', 'uses' => 'ArtistController@getArtists'));
-
-// Test
-// Route::get('/test', 'UserController@devGetSession');
+Route::get('/artists/search/{name}','ArtistController@searchArtists');
+Route::get('/artists/search/{name}/page/{page}', 'ArtistController@searchArtistsPage');
+Route::get('/artists/page/{page}', 'ArtistController@getArtistsPage');
+Route::get('/artist/{name}','ArtistController@getArtist');
+Route::get('/artists/interesting', 'ArtistController@getInterestingArtists');
 
 // Root
 Route::get('/', 'HomeController@getIndex');

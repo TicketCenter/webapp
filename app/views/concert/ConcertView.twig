@@ -1,12 +1,52 @@
 {% extends "BaseView.twig" %}
-
 {% block head %}
+<link rel="stylesheet" href="{{ asset('css/concert.min.css') }}" type="text/css" media="screen">
 {% endblock head %}
-
 {% block content %}
-	Concert
+<div class="col-md-12 borderframe">
+	<h1>{{ concert.title }}</h1>
+	<div class="available-price col-md-4">
+		<table>
+			<tr>
+				<td>
+					Tickets beschikbaar:
+				</td>
+				<td>
+					{{ concert.tickets_available }}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Prijs per ticket:
+				</td>
+				<td>
+					{{ concert.ticket_price }}
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="details">
+		<p>
+			Datum: {{ concert.start_time.date }}<br>
+			Aanvang: {{ concert.start_time.time }}<br>
+			Stad: {{ concert.city }}<br>
+			Regio: {{ concert.region }}<br>
+			Land: {{ concert.country }}<br>
+			{% if concert.artists != null %}
+				Artiesten: 
+				{% for artist in concert.artists.artist %}
+					<a href="{{baseurl}}/artist/{{artist.name}}">{{artist.name}}</a>
+				{% endfor %}
+			{% else %}
+			Artiesten: Niet bekend.
+			{% endif %}
+		</p>
+		<div class="order-tickets form-inline form-group col-md-3">
+			<input class="form-control" type="text" placeholder="Aantal kaarten">
+			<button class="btn btn-success">Bestel</button>
+		</div>
+	</div>
+</div>
 {% endblock content %}
-
 {% block javascript %}
-{% endblock javascript %} 
-
+{% endblock javascript %}

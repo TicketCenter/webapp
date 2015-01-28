@@ -13,5 +13,34 @@
 	border: 2px solid #FFBABA !important;
     color: #D8000C;
     background-color: #FFBABA;
+}
 
+.margin-top-20 {
+    margin-top: 20px !important;
+}
+
+.margin-left-10{
+    margin-left: 10px;
+}
+
+.search-box {
+    display: inline-block;
+    width: 100%;
+}
+
+.search-box > input{
+    display: inline-block;
+    width: 87%;
+}
+
+.search-box > button{
+    display: inline-block;
+    width: 10%;
+    margin-top: -5px;
+}
+.float-right{
+    float: right;
+}
+.inline-block{
+    display: inline-block;
 }
