@@ -16,7 +16,7 @@ function bindButtons() {
         }).done(function(data) {
         	console.log(data);
             if (data.status = 200) {
-                // window.location.href = baseurl + '/order/succes';
+                window.location.href = baseurl + '/order/succes';
             }
         });
     })
@@ -35,7 +35,7 @@ function bindButtons() {
         }).done(function(data) {
         	console.log(data);
             if (data.status = 200) {
-                // window.location.href = baseurl + '/order/succes';
+                window.location.href = baseurl + '/order/succes';
             }
         });
 
