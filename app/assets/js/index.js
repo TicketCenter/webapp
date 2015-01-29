@@ -3,7 +3,12 @@ $(function() {
         slideSpeed: 300,
         paginationSpeed: 400,
         singleItem: true,
-        autoPlay: 3000
+        autoPlay: 5000,
+        lazyLoad: true
+    });
+
+    $('body').on('click', '.banner-img', function(){
+        window.location.href = baseurl + '/concert/' + $(this).data('concert-id');
     });
 
     loadInterestingConcerts();

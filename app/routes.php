@@ -29,6 +29,7 @@ Route::get('/concerts/search/{location}','ConcertController@searchConcerts');
 Route::get('/concerts/search/{location}/page/{page}', 'ConcertController@searchConcertsPage');
 Route::get('/concerts/page/{page}', 'ConcertController@getConcertsPage');
 Route::get('/concerts/interesting', 'ConcertController@getInterestingConcerts');
+Route::get('/concerts/artist/{artist}', 'ConcertController@getArtistConcerts');
 
 // Artist
 Route::get('/artists', array('as' => 'artists', 'uses' => 'ArtistController@getArtists'));

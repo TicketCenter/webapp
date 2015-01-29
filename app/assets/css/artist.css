@@ -1,0 +1,16 @@
+.concerts-overview {
+	height: 390px;
+}
+.loading-div {
+	height: 100%;
+	text-align: center;
+}
+.loading-icon {
+	text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.concerts{
+	height: 100%;
+}

@@ -198,7 +198,7 @@ return array(
 	),
 
 	'baseurl' => 'http://185.10.51.243',
-	'apibaseurl' => 'http://artistservice.ticketcenter.hanze.nberlijn.nl/api',
-	'api_key' => 'pz76SUD2HE36689AMzF0A2m9pZrk2fUZ'
+	'apibaseurl' => 'http://servicebus.ticketcenter.hanze.nberlijn.nl/api',
+	'api_key' => 'M6j3r3TQ71o8Z2y1WO7T12743695Y5Fd'
 
 );

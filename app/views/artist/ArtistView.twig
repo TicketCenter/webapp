@@ -1,9 +1,10 @@
 {% extends "BaseView.twig" %}
 {% block head %}
 	<link rel="stylesheet" href="{{ asset('css/artist.min.css') }}" type="text/css" media="screen">
+	<link rel="stylesheet" href="{{ asset('css/concertOverview.min.css') }}" type="text/css" media="screen">
 {% endblock head %}
 {% block content %}
-<div class="col-md-12 borderframe">
+<div class="col-md-12 borderframe artist-details" data-name="{{artist.name}}">
 	<h1>{{artist.name}} {% if artist.birth_year %}- {{artist.birth_year}}{% endif %}</h1>
 	<img style="float: right" src="{{artist.image.url}}">
 	{% if artist.biography %}
@@ -12,6 +13,18 @@
 	<p>Nog geen biografie!</p>
 	{% endif %}
 </div>
+
+<div class="col-md-12 borderframe concerts-overview">
+	<h3>Verwante concerten</h3>
+	<div class="concerts">
+	<div class="loading-div">
+		<img class="loading-icon" src="{{ asset('img/ajax-loader.gif') }}">
+	</div>		
+	</div>
+</div>
+
 {% endblock content %}
 {% block javascript %}
+	<script type="text/javascript" src="{{ asset('packages/lazyload/lazyload.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/artist.min.js') }}"></script>
 {% endblock javascript %}
