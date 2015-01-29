@@ -19,7 +19,7 @@
 				<td>
 					Prijs per ticket:
 				</td>
-				<td>
+				<td class="ticket-price">
 					{{ concert.ticket_price }}
 				</td>
 			</tr>
@@ -42,11 +42,12 @@
 			{% endif %}
 		</p>
 		<div class="order-tickets form-inline form-group col-md-3">
-			<input class="form-control" type="text" placeholder="Aantal kaarten">
-			<button class="btn btn-success">Bestel</button>
+			<input class="form-control quantity" type="number" placeholder="Aantal kaarten">
+			<button class="btn btn-success btn-order" data-concert-id="{{concert.id}}" data-concert-title="{{ concert.title }}">Bestel</button>
 		</div>
 	</div>
 </div>
 {% endblock content %}
 {% block javascript %}
+	<script type="text/javascript" src="{{ asset('js/concert.min.js') }}"></script>
 {% endblock javascript %}

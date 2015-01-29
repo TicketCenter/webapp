@@ -1,4 +1,6 @@
 <?php
+use App\Helpers\ClientHelper as Client;
+
 class UserController extends BaseController
 {
 	
@@ -33,11 +35,25 @@ class UserController extends BaseController
 		$password = Input::get('password');
 		Session::put('u', Crypt::encrypt($username));
 		Session::put('p', Crypt::encrypt($password));
-		Session::put('logged_in', true);
-		return Response::json(array(
-			'status' => '200',
-			'devmessage' => 'logged in.'
-		));
+		
+		$data = array(
+			'email_address' => $username,
+			'password' => $password
+		);
+		
+		$result = Client::postData('/users/login', json_encode($data));
+		if(!empty($result['user_id'])){
+			Session::put('user_id', Crypt::encrypt((int)$result['user_id']));
+			Session::put('token', Crypt::encrypt($result['token']));
+			Session::put('logged_in', true);
+			if(!empty(Session::get('ticket_price'))){
+				return Response::json(array('code'=>'200', 'url' => '/order'));	
+			} else {
+				return Response::json(array('code'=>'200', 'url' => '/'));	
+			}
+		} else {
+			return Response::json(array('code'=>'403', 'result' => $data));
+		}
 	}
 	
 	/**
@@ -57,23 +73,20 @@ class UserController extends BaseController
 	
 	public function handleRegistration() {
 		$data = array(
-			'email' => Input::get('email') ,
+			'email_address' => Input::get('email_address') ,
 			'password' => Input::get('password') ,
-			'firstname' => Input::get('firstname') ,
-			'lastname' => Input::get('lastname') ,
-			'street' => Input::get('street') ,
-			'housenumber' => Input::get('housenumber') ,
-			'appendix' => Input::get('appendix') ,
-			'postalcode' => Input::get('postalcode') ,
+			'first_name' => Input::get('first_name') ,
+			'last_name' => Input::get('last_name') ,
+			'street_name' => Input::get('street_name') ,
+			'street_number' => (int)Input::get('street_number') ,
+			'street_number_add' => Input::get('street_number_add') ,
+			'postal_code' => Input::get('postal_code') ,
 			'city' => Input::get('city') ,
 			'country' => Input::get('country') ,
-			'birthdate' => Input::get('birthdate')
+			'date_of_birth' => Input::get('date_of_birth')
 		);
-		
-		return Response::json(array(
-			'status' => '200',
-			'devmessage' => 'Processed or smth'
-		));
+		$result = Client::postData('/users', (string)json_encode($data));
+		return Response::json($result);
 	}
 	
 	/**

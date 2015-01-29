@@ -31,6 +31,13 @@ Route::get('/concerts/page/{page}', 'ConcertController@getConcertsPage');
 Route::get('/concerts/interesting', 'ConcertController@getInterestingConcerts');
 Route::get('/concerts/artist/{artist}', 'ConcertController@getArtistConcerts');
 
+// Order
+Route::post('/handleOrder', 'OrderController@orderTickets');
+Route::get('/order', 'OrderController@getOrderView');
+Route::get('/order/succes', 'OrderController@getOrderSuccesView');
+Route::get('/order/history', array('as' => 'orderHistory', 'uses' =>'OrderController@getOrderHistory'));
+Route::post('/handlePayment', 'OrderController@handlePayment');
+
 // Artist
 Route::get('/artists', array('as' => 'artists', 'uses' => 'ArtistController@getArtists'));
 Route::get('/artists/search/{name}','ArtistController@searchArtists');

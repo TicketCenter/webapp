@@ -4,16 +4,21 @@ $(function() {
 
 function bindFormButton() {
     $('.login-form').submit(function(e) {
+        console.log($('.email-input').val());
         $.ajax({
             type: 'POST',
             url: '/handleLogin',
             data: {
-                email: $('.email-input').val(),
-                password: $('.password-input').val()
+                email: $('.email-login-input').val(),
+                password: CryptoJS.SHA1($('.password-input').val()).toString(),
             }
         }).done(function(data) {
-            if (data.status = 200) {
-                window.location.href = baseurl;
+            console.log(data);
+            if (data.code == 200) {
+                $('.error').hide();
+                window.location.href = baseurl + data['url'];
+            } else {
+                $('.error').show();
             }
         });
         return false;

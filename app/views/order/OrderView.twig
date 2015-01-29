@@ -1,0 +1,49 @@
+{% extends "BaseView.twig" %}
+{% block head %}
+<link rel="stylesheet" href="{{ asset('css/order.min.css') }}" type="text/css" media="screen">
+{% endblock head %}
+{% block content %}
+<div class="borderframe product-overview col-md-12">
+	<table class="table">
+		<tr>
+			<th>Aantal</th>
+			<th>Concert</th>
+			<th>Prijs</th>
+		</tr>
+		<tr>
+			<td>{{ ticket_quantity }}</td>
+			<td>{{ ticket_concert_id }}, {{ ticket_concert_title }}</td>
+			<td>{{ ticket_total_price }}</td>
+		</tr>
+	</table>
+	{% if logged_in %}
+	<button class="pull-right btn-success btn btn-lg btn-pay">Betaal nu!</button>
+</div>
+{% else %}
+</div>
+<div class="borderframe col-md-6 order">
+<form class="pay-without-login">
+	<div class="form-group">
+		<label for="name">Volledige naam</label>
+		<input type="text" class="form-control name-input" name="name" placeholder="Volledige naam">
+	</div>
+	<div class="form-group">
+		<label for="email">Email adres</label>
+		<input type="email" class="form-control email-input" name="email" placeholder="Email">
+	</div>
+	<div class="form-group">
+		<label for="dateofbirth">Geboorte datum</label>
+		<input type="text" class="form-control dateofbirth-input" name="dateofbirth" placeholder="Geboorte datum" required>
+	</div>
+	<button class="btn-success btn btn-lg btn-pay">Betaal nu!</button>
+</form>
+</div>
+<div class="col-md-6 no-padding">
+{% include 'include/LoginView' %}
+</div>
+{% endif %}
+{% endblock content %}
+{% block javascript %}
+<script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/order.min.js') }}"></script>
+{% endblock javascript %}

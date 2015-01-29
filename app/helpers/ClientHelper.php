@@ -11,10 +11,15 @@ use App;
 
 class ClientHelper
 {
-    public static function getData($requestpath, $bool = false) {
+    public static function getData($requestpath, $ticketservice=false, $bool = false) {
         try {
             $client = new Client();
-            $response = $client->get(Config::get('app.apibaseurl') . $requestpath, ['headers' => ['Accept' => 'application/json']]);
+            if ($ticketservice) {
+                $baseurl = Config::get('app.ticketservice');
+            } else {
+                $baseurl = Config::get('app.apibaseurl');
+            }
+            $response = $client->get($baseurl . $requestpath, ['headers' => ['Accept' => 'application/json']]);
             return $response->json(['object' => $bool]);
         }
         catch(DecryptException $ex) {
@@ -55,15 +60,20 @@ class ClientHelper
         }
     }
     
-    public static function postData($requestpath, $bool = false) {
+    public static function postData($requestpath, $data, $ticketservice = true, $bool = false) {
         try {
-            $client = new Client();
-            $response = $client->post(Config::get('app.apibaseurl') . $requestpath, ['headers' => ['Accept' => 'application/json']]);
+            $client = new Client(['defaults' => ['headers' => ['Accept' => 'application/json', 'Content-Type' => 'application/json']]]);
+            if ($ticketservice) {
+                $baseurl = Config::get('app.ticketservice');
+            } else {
+                $baseurl = Config::get('app.apibaseurl');
+            }
+            $response = $client->post($baseurl . $requestpath, ['body' => $data]);
             return $response->json(['object' => $bool]);
         }
         catch(DecryptException $ex) {
             return array(
-                'href' => $requestpath,
+                'href' => $baseurl . $requestpath,
                 'status' => 400,
                 'code' => 'ticketcenter40001',
                 'devmessage' => 'Invalid data trying to get decrypted.',
@@ -72,16 +82,16 @@ class ClientHelper
         }
         catch(ServerException $ex) {
             return array(
-                'href' => $requestpath,
+                'href' => $baseurl . $requestpath,
                 'status' => 403,
                 'code' => 'api40302',
                 'devmessage' => 'Unauthorized access.',
-                'result' => null
+                'result' => $ex
             );
         }
         catch(ClientException $ex) {
             return array(
-                'href' => $requestpath,
+                'href' => $baseurl . $requestpath,
                 'status' => 404,
                 'code' => 'api40401',
                 'devmessage' => 'Endpoint not found.',
@@ -90,7 +100,7 @@ class ClientHelper
         }
         catch(RuntimeException $ex) {
             return array(
-                'href' => $requestpath,
+                'href' => $baseurl . $requestpath,
                 'status' => $ex->getCode() ,
                 'code' => 'ticketcenter40099',
                 'devmessage' => 'Runtime exception error: ' . $ex->getMessage() ,

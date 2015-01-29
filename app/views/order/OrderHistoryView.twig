@@ -1,0 +1,30 @@
+{% extends "BaseView.twig" %}
+{% block head %}
+{% endblock head %}
+{% block content %}
+<div class="order-history-container borderframe">
+	<table class="table">
+		<tr>
+			<th>Aantal</th>
+			<th>Concert</th>
+			<th>Bestel datum</th>
+			<th>Prijs per ticket</th>
+			<th>Prijs Totaal</th>
+			<th>Download</th>
+		</tr>
+		{% for order in result %}
+		<tr>
+			<td>{{ order.amount }}</td>
+			<td>{{ order.concert_id }}</td>
+			<td>{{ order.order_date }}</td>
+			<td>{{ order.price }}</td>
+			<td>{{ order.price * order.amount }} </td>
+			<td><a href="{{ order.ticket_path }}">hier</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+{% endblock content %}
+{% block javascript %}
+
+{% endblock javascript %}

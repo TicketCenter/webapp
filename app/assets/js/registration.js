@@ -4,7 +4,7 @@ $(function() {
 
 function bindFormButton() {
     $('.dateofbirth-input').datepicker({
-        format: 'dd-mm-yyyy'
+        format: 'yyyy-mm-dd'
     });
 
     $(".registration-form").unbind();
@@ -17,17 +17,17 @@ function bindFormButton() {
                 type: 'POST',
                 url: '/handleRegistration',
                 data: {
-                    email: $('.email1-input').val(),
-                    password: $('.password1-input').val(),
-                    firstname: $('.firstname-input').val(),
-                    lastname: $('.lastname-input').val(),
-                    street: $('.street-input').val(),
-                    housenumber: $('.housenumber-input').val(),
-                    appendix: $('.appendix-input').val(),
-                    postalcode: $('.postalcode-input').val(),
+                    email_address: $('.email1-input').val(),
+                    password: CryptoJS.SHA1($('.password1-input').val()).toString(),
+                    first_name: $('.firstname-input').val(),
+                    last_name: $('.lastname-input').val(),
+                    street_name: $('.street-input').val(),
+                    street_number: parseInt($('.housenumber-input').val()),
+                    street_number_add: $('.appendix-input').val(),
+                    postal_code: $('.postalcode-input').val(),
                     city: $('.city-input').val(),
                     country: $('.country-input').val(),
-                    birthdate: $('.birthdate-input').val(),
+                    date_of_birth: $('.dateofbirth-input').val(),
                 }
             }).done(function(data) {
                 if (data.status = 200) {
