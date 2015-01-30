@@ -7,14 +7,12 @@ function bindButtons() {
         format: 'yyyy-mm-dd'
     });
 
-    $('.btn-pay').on('click', function(){
-		$.ajax({
+    $('.product-overview .btn-pay').on('click', function() {
+        $.ajax({
             type: 'POST',
             url: '/handlePayment',
-            data: {
-            }
+            data: {}
         }).done(function(data) {
-        	console.log(data);
             if (data.status = 200) {
                 window.location.href = baseurl + '/order/succes';
             }
@@ -24,20 +22,22 @@ function bindButtons() {
     $(".pay-without-login").unbind();
     $(".pay-without-login").bind('submit', function(event) {
         event.preventDefault();
-        $.ajax({
-            type: 'POST',
-            url: '/handlePayment',
-            data: {
-        		date_of_birth: $('.dateofbirth-input').val(),
-        		email_address: $('.email-input').val(),
-        		name: $('.name-input').val()
-            }
-        }).done(function(data) {
-        	console.log(data);
-            if (data.status = 200) {
-                window.location.href = baseurl + '/order/succes';
-            }
-        });
+        if ($('.dateofbirth-input').val() != '' && $('.email-input').val() != '' && $('.name-input').val() != '') {
+            $.ajax({
+                type: 'POST',
+                url: '/handlePayment',
+                data: {
+                    date_of_birth: $('.dateofbirth-input').val(),
+                    email_address: $('.email-input').val(),
+                    name: $('.name-input').val()
+                }
+            }).done(function(data) {
+                console.log(data);
+                if (data.status = 200) {
+                    window.location.href = baseurl + '/order/succes';
+                }
+            });
+        }
 
         return false;
     });

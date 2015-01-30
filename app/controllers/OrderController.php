@@ -7,6 +7,9 @@ class OrderController extends BaseController
 
 		$result = Client::getData('/orders/'. (int)Crypt::decrypt(Session::get('user_id')) .'/'. Crypt::decrypt(Session::get('token')), true);
 		$view = View::make('order/OrderHistoryView');
+		foreach ($result as $order => $value) {
+			$result[$order]['ticket_path'] = 'http://hanze.nberlijn.nl/tickets/' . substr($value['ticket_path'], 35);
+		}
 		$view->result = $result;
 		return $view;
 	}
