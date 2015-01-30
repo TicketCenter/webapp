@@ -17,13 +17,12 @@
 			<td>{{ order.amount }}</td>
 			<td>{{ order.concert_id }}</td>
 			<td>{{ order.order_date }}</td>
-			<td>{{ order.price }}</td>
-			<td>{{ order.price * order.amount }} </td>
+			<td>€ {{ order.price }}</td>
+			<td>€ {{ order.price * order.amount }} </td>
 			<td><a href="{{ order.ticket_path }}">hier</a></td>
 		</tr>
 		{% endfor %}
 	</table>
-	<pre>{{ dump(value)}}
 </div>
 {% endblock content %}
 {% block javascript %}

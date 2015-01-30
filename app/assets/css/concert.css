@@ -13,7 +13,11 @@
 }
 
 .available-price > table > tbody > tr > td:last-child{
-    width: 50px;
+    width: 80px;
+}
+
+.ticket-price{
+    display: inline-block;
 }
 
 .details > p > a:after { 

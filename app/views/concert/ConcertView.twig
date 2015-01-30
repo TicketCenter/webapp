@@ -19,35 +19,36 @@
 				<td>
 					Prijs per ticket:
 				</td>
-				<td class="ticket-price">
+				<td>€<div class="ticket-price">
 					{{ concert.ticket_price }}
-				</td>
-			</tr>
-		</table>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+<div class="details">
+	<p>
+	Datum: {{ concert.start_time.date }}<br>
+	Aanvang: {{ concert.start_time.time }}<br>
+	Stad: {{ concert.city }}<br>
+	Regio: {{ concert.region }}<br>
+	Land: {{ concert.country }}<br>
+	{% if concert.artists != null %}
+	Artiesten:
+	{% for artist in concert.artists.artist %}
+	<a href="{{baseurl}}/artist/{{artist.name}}">{{artist.name}}</a>
+	{% endfor %}
+	{% else %}
+	Artiesten: Niet bekend.
+	{% endif %}
+	</p>
+	<div class="order-tickets form-inline form-group col-md-3">
+		<input class="form-control quantity" type="number" placeholder="Aantal kaarten">
+		<button class="btn btn-success btn-order" data-concert-id="{{concert.id}}" data-concert-title="{{ concert.title }}">Bestel</button>
 	</div>
-	<div class="details">
-		<p>
-			Datum: {{ concert.start_time.date }}<br>
-			Aanvang: {{ concert.start_time.time }}<br>
-			Stad: {{ concert.city }}<br>
-			Regio: {{ concert.region }}<br>
-			Land: {{ concert.country }}<br>
-			{% if concert.artists != null %}
-				Artiesten: 
-				{% for artist in concert.artists.artist %}
-					<a href="{{baseurl}}/artist/{{artist.name}}">{{artist.name}}</a>
-				{% endfor %}
-			{% else %}
-			Artiesten: Niet bekend.
-			{% endif %}
-		</p>
-		<div class="order-tickets form-inline form-group col-md-3">
-			<input class="form-control quantity" type="number" placeholder="Aantal kaarten">
-			<button class="btn btn-success btn-order" data-concert-id="{{concert.id}}" data-concert-title="{{ concert.title }}">Bestel</button>
-		</div>
-	</div>
+</div>
 </div>
 {% endblock content %}
 {% block javascript %}
-	<script type="text/javascript" src="{{ asset('js/concert.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/concert.min.js') }}"></script>
 {% endblock javascript %}
